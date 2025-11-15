@@ -1,0 +1,9 @@
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/icudtl.dat
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/flutter_windows.dll
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/FontManifest.json
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/NativeAssetsManifest.json
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

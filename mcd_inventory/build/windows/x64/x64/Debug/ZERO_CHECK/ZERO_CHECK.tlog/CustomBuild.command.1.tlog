@@ -1,0 +1,10 @@
+^C:\ASE\ASE 456\PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\D5ACF3AB3DB193608353BFF3EE261673\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/ASE/ASE 456/project/mcd_inventory/windows" "-BC:/ASE/ASE 456/project/mcd_inventory/build/windows/x64" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/mcd_inventory.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

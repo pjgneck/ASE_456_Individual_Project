@@ -1,0 +1,10 @@
+^C:\ASE\ASE 456\PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\D5ACF3AB3DB193608353BFF3EE261673\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,10 @@
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/CMakeFiles/INSTALL.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/CMakeFiles/ALL_BUILD.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/CMakeFiles/ZERO_CHECK.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/flutter_wrapper_app.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/flutter_assemble.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/INSTALL.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/CMakeFiles/mcd_inventory.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/CMakeFiles/INSTALL.dir
+C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/runner/CMakeFiles/ALL_BUILD.dir
