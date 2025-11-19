@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\flutter_window.cpp">
+    <ClCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\flutter_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\main.cpp">
+    <ClCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\utils.cpp">
+    <ClCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\win32_window.cpp">
+    <ClCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\win32_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\flutter\generated_plugin_registrant.cc">
+    <ClCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\flutter\generated_plugin_registrant.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\CMakeLists.txt" />
+    <CustomBuild Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="C:\ASE\ASE 456\project\mcd_inventory\windows\runner\Runner.rc">
+    <ResourceCompile Include="C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\runner\Runner.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{ED4029A2-0A86-3C53-9D1F-349B47F2177F}</UniqueIdentifier>
+      <UniqueIdentifier>{DD1FC71B-7703-397C-B660-37EFB120ABE3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

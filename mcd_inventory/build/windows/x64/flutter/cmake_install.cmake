@@ -1,4 +1,4 @@
-# Install script for directory: C:/ASE/ASE 456/project/mcd_inventory/windows/flutter
+# Install script for directory: C:/ASE/ASE 456/project/ASE_456_Individual_Project/mcd_inventory/windows/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

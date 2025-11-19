@@ -1,4 +1,4 @@
-# Install script for directory: C:/ASE/ASE 456/project/mcd_inventory/windows/runner
+# Install script for directory: C:/ASE/ASE 456/project/ASE_456_Individual_Project/mcd_inventory/windows/runner
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

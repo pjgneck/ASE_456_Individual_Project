@@ -2,16 +2,16 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\ASE\ASE 456\project\mcd_inventory\build\windows\x64\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\build\windows\x64\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\ASE\ASE 456\project\mcd_inventory\build\windows\x64\flutter\x64\Debug\flutter_assemble</FullPath>
+      <FullPath>C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\build\windows\x64\flutter\x64\Debug\flutter_assemble</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\ASE\ASE 456\project\mcd_inventory\build\windows\x64\runner\Debug\mcd_inventory.exe</FullPath>
+      <FullPath>C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\build\windows\x64\runner\Debug\mcd_inventory.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\ASE\ASE 456\project\mcd_inventory\build\windows\x64\x64\Debug\ALL_BUILD</FullPath>
+      <FullPath>C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\build\windows\x64\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
