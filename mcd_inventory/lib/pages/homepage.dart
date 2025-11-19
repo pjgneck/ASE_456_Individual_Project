@@ -4,6 +4,7 @@ import '../../core/app_state.dart';
 import '../../core/models/store.dart';
 import '../../services/store_service.dart';
 import 'inventory.dart';
+import './TruckListScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,24 +28,18 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = state.user;
 
     if (user == null) {
-      setState(() {
-        loading = false;
-      });
+      setState(() => loading = false);
       return;
     }
 
-    // Fetch stores based on role
     final stores = await storeService.getStoresForUser(user);
     state.setStores(stores);
 
-    // Auto-select a store if none is selected
     if (state.store == null && stores.isNotEmpty) {
-      state.setSelectedStore(stores.first); // <-- default to first store
+      state.setSelectedStore(stores.first);
     }
 
-    setState(() {
-      loading = false;
-    });
+    setState(() => loading = false);
   }
 
   @override
@@ -128,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 25),
 
-                  // Dropdown for multiple stores (Franchise)
+                  // Dropdown for multiple stores
                   if (state.stores.length > 1) ...[
                     const Text(
                       "Select a Store",
@@ -140,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       value: selectedStore,
                       isExpanded: true,
                       items: state.stores
-                          .map((store) => DropdownMenuItem<Store>(
+                          .map((store) => DropdownMenuItem(
                                 value: store,
                                 child: Text(store.name),
                               ))
@@ -154,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 20),
                   ],
 
-                  // Store Card with Open Inventory button
+                  // Store Card + Buttons
                   Stack(
                     children: [
                       Card(
@@ -163,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         elevation: 6,
                         color: Colors.white,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 70),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -202,54 +197,99 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      // Left accent strip
+
+                      // Left strip
                       Positioned(
                         left: 0,
                         top: 0,
                         bottom: 0,
                         child: Container(
                           width: 6,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF6A11CB),
-                            borderRadius: const BorderRadius.only(
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF6A11CB),
+                            borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 bottomLeft: Radius.circular(20)),
                           ),
                         ),
                       ),
-                      // Open Inventory Button
+
+                      // BUTTONS
                       Positioned(
                         bottom: 15,
                         left: 20,
                         right: 20,
-                        child: SizedBox(
-                          height: 50,
-                          child: ElevatedButton.icon(
-                            onPressed: selectedStore != null
-                                ? () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              const InventoryScreen()),
-                                    );
-                                  }
-                                : null,
-                            icon: const Icon(Icons.inventory, size: 24),
-                            label: const Text(
-                              "Open Inventory",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF6A11CB),
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            // NEW TRUCK ORDERS BUTTON
+                            SizedBox(
+                              height: 50,
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                onPressed: selectedStore != null
+                                    ? () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => TruckListScreen(
+                                                store: selectedStore),
+                                          ),
+                                        );
+                                      }
+                                    : null,
+                                icon: const Icon(Icons.local_shipping, size: 24),
+                                label: const Text(
+                                  "View Truck Orders",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF2575FC),
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  elevation: 6,
+                                ),
                               ),
-                              elevation: 6,
                             ),
-                          ),
+
+                            const SizedBox(height: 12),
+
+                            // Existing inventory button
+                            SizedBox(
+                              height: 50,
+                              width: double.infinity,
+                              child: ElevatedButton.icon(
+                                onPressed: selectedStore != null
+                                    ? () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const InventoryScreen()),
+                                        );
+                                      }
+                                    : null,
+                                icon: const Icon(Icons.inventory, size: 24),
+                                label: const Text(
+                                  "Open Inventory",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF6A11CB),
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  elevation: 6,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

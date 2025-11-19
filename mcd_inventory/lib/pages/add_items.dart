@@ -19,8 +19,8 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
 
   List<Item> items = [];
   Map<String, TextEditingController> qtyControllers = {};
-  Map<String, int> currentQty = {}; // current quantity per item
-  Map<String, String> inventoryRecordIds = {}; // itemId -> inventoryId
+  Map<String, int> currentQty = {};
+  Map<String, String> inventoryRecordIds = {};
   Store? selectedStore;
   bool loading = true;
 
@@ -28,7 +28,7 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
   void initState() {
     super.initState();
     final appState = context.read<AppState>();
-    selectedStore = appState.store; // preselect for GM/Manager
+    selectedStore = appState.store;
     loadItems();
   }
 
@@ -46,8 +46,8 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
     currentQty = {};
     inventoryRecordIds = {};
     for (var inv in inventories) {
-      currentQty[inv.itemId] = inv.quantity;
-      inventoryRecordIds[inv.itemId] = inv.id; // save the inventory record ID
+      currentQty[inv.item.id] = inv.quantity;
+      inventoryRecordIds[inv.item.id] = inv.id;
     }
 
     for (var item in items) {
@@ -58,44 +58,58 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
   }
 
   void saveAll() async {
-  if (selectedStore == null) return;
+    if (selectedStore == null) return;
 
-  for (var item in items) {
-    final qtyText = qtyControllers[item.id]?.text ?? '';
-    final qtyToAdd = int.tryParse(qtyText);
-    if (qtyToAdd != null && qtyToAdd > 0) {
-      final existing = currentQty[item.id] ?? 0;
-      final newQty = existing + qtyToAdd;
+    for (var item in items) {
+      final qtyText = qtyControllers[item.id]?.text ?? '';
+      final qtyToAdd = int.tryParse(qtyText);
 
-      if (inventoryRecordIds.containsKey(item.id)) {
-        // update existing inventory
-        await invService.updateQuantity(inventoryRecordIds[item.id]!, newQty);
-      } else {
-        // create new inventory record
-        final success =
-            await invService.createInventory(selectedStore!.id, item.id, newQty);
-        if (success) {
-          // reload inventory to get the new record IDs
-          final inventories = await invService.getInventoryForStore(selectedStore!.id);
-          inventoryRecordIds.clear();
-          currentQty.clear();
-          for (var inv in inventories) {
-            inventoryRecordIds[inv.itemId] = inv.id;
-            currentQty[inv.itemId] = inv.quantity;
+      if (qtyToAdd != null && qtyToAdd > 0) {
+        final existing = currentQty[item.id] ?? 0;
+        final newQty = existing + qtyToAdd;
+
+        if (inventoryRecordIds.containsKey(item.id)) {
+          await invService.updateQuantity(inventoryRecordIds[item.id]!, newQty);
+        } else {
+          final success = await invService.createInventory(
+            selectedStore!.id,
+            item.id,
+            newQty,
+          );
+
+          if (success) {
+            final inventories =
+                await invService.getInventoryForStore(selectedStore!.id);
+            inventoryRecordIds.clear();
+            currentQty.clear();
+            for (var inv in inventories) {
+              inventoryRecordIds[inv.item.id] = inv.id;
+              currentQty[inv.item.id] = inv.quantity;
+            }
           }
         }
       }
     }
-  }
 
-  ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Inventory updated successfully!")));
-  Navigator.pop(context);
-}
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Inventory updated successfully!")),
+    );
+
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     final appState = context.watch<AppState>();
+
+    // Group items by category
+    final grouped = {
+      "Frozen":
+          items.where((i) => i.category.toLowerCase() == "frozen").toList(),
+      "Refrigerated":
+          items.where((i) => i.category.toLowerCase() == "refrigerated").toList(),
+      "Dry": items.where((i) => i.category.toLowerCase() == "dry").toList(),
+    };
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
@@ -117,7 +131,6 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
           ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
-                // Store selector for franchise users
                 if (appState.isFranchise)
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -149,67 +162,69 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
                     ),
                   ),
 
+                // MAIN ITEM CONTENT
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
                     child: Column(
-                      children: items.map((item) {
-                        final existing = currentQty[item.id] ?? 0;
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (var category
+                            in ["Frozen", "Refrigerated", "Dry"]) ...[
+                          if (grouped[category]!.isNotEmpty) ...[
+                            const SizedBox(height: 20),
 
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          margin: const EdgeInsets.symmetric(vertical: 8),
-                          elevation: 3,
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(item.sku,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16)),
-                                      const SizedBox(height: 4),
-                                      Text(item.name,
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.grey)),
-                                      const SizedBox(height: 4),
-                                      Text("Current Qty: $existing",
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.black87)),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                SizedBox(
-                                  width: 70,
-                                  child: TextField(
-                                    controller: qtyControllers[item.id],
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      labelText: "Add",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      filled: true,
-                                      fillColor: Colors.grey[100],
+                            // CATEGORY HEADER (Centered + Line)
+                            Center(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    category,
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    height: 2,
+                                    width: 160,
+                                    color: Colors.grey,
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            const SizedBox(height: 16),
+
+                            // TWO ITEMS PER ROW (same card layout as before)
+                            Column(
+                              children: [
+                                for (int i = 0;
+                                    i < grouped[category]!.length;
+                                    i += 2)
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: buildItemCard(
+                                            grouped[category]![i]),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      if (i + 1 <
+                                          grouped[category]!.length)
+                                        Expanded(
+                                          child: buildItemCard(
+                                              grouped[category]![i + 1]),
+                                        )
+                                      else
+                                        const Expanded(child: SizedBox()),
+                                    ],
+                                  ),
                               ],
                             ),
-                          ),
-                        );
-                      }).toList(),
+                          ],
+                        ],
+                      ],
                     ),
                   ),
                 ),
@@ -223,6 +238,59 @@ class _AddInventoryPageState extends State<AddInventoryPage> {
         ),
         icon: const Icon(Icons.save),
         backgroundColor: const Color(0xFF2575FC),
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------
+  // ITEM CARD (unchanged styling, matches old UI, fits mgmt needs)
+  // ---------------------------------------------------------
+  Widget buildItemCard(Item item) {
+    final existing = currentQty[item.id] ?? 0;
+
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      elevation: 3,
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.name,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            const SizedBox(height: 4),
+
+            Text(
+              item.unit,
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
+            ),
+            const SizedBox(height: 4),
+
+            Text(
+              "Current Qty: $existing",
+              style: const TextStyle(fontSize: 14, color: Colors.black87),
+            ),
+
+            const SizedBox(height: 10),
+
+            TextField(
+              controller: qtyControllers[item.id],
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: "Add",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                filled: true,
+                fillColor: Colors.grey[100],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -75,57 +75,88 @@ class _InventoryScreenState extends State<InventoryScreen> {
                   itemCount: inventory.length,
                   itemBuilder: (context, index) {
                     final item = inventory[index];
+
                     return Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 5,
-                      margin: const EdgeInsets.symmetric(vertical: 8),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 6,
+                      margin: const EdgeInsets.symmetric(vertical: 10),
                       child: Padding(
                         padding: const EdgeInsets.all(16),
                         child: Row(
                           children: [
+                            // Avatar icon with Item initial
                             CircleAvatar(
-                              radius: 25,
+                              radius: 28,
                               backgroundColor: const Color(0xFF6A11CB),
                               child: Text(
-                                item.itemId.substring(0, 1).toUpperCase(),
+                                item.item.name.isNotEmpty
+                                    ? item.item.name[0].toUpperCase()
+                                    : "?",
                                 style: const TextStyle(
-                                    color: Colors.white, fontSize: 20),
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 16),
+
+                            const SizedBox(width: 18),
+
+                            // Item details
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  // Item Name
                                   Text(
-                                    "Item ${item.itemId}",
+                                    item.item.name,
                                     style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
+
                                   const SizedBox(height: 4),
+
+                                  // Item ID + Unit line
+                                  Text(
+                                    "ID: ${item.item.id}   •   Unit: ${item.item.unit}",
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 6),
+
+                                  // Quantity
                                   Text(
                                     "Qty: ${item.quantity}",
                                     style: const TextStyle(
-                                        fontSize: 16, color: Colors.grey),
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+
+                            // Quantity controls
                             Row(
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.remove),
-                                  color: const Color(0xFF2575FC),
-                                  onPressed: () =>
-                                      updateQty(item, item.quantity - 1),
+                                  icon: const Icon(Icons.remove_circle,
+                                      color: Colors.redAccent),
+                                  onPressed: () => updateQty(
+                                      item, item.quantity - 1),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.add),
-                                  color: const Color(0xFF2575FC),
-                                  onPressed: () =>
-                                      updateQty(item, item.quantity + 1),
+                                  icon: const Icon(Icons.add_circle,
+                                      color: Colors.green),
+                                  onPressed: () => updateQty(
+                                      item, item.quantity + 1),
                                 ),
                               ],
                             )

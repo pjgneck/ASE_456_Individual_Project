@@ -5,23 +5,21 @@ class InventoryService {
   final pb = PBClient.client;
 
   Future<List<Inventory>> getInventoryForStore(String storeId) async {
-    try {
-      final records = await pb.collection('inventory').getFullList(
-        filter: 'store = "$storeId"',
-      );
+    final records = await pb
+        .collection('inventory')
+        .getFullList(filter: 'store = "$storeId"');
 
-      return records.map((r) => Inventory.fromRecord(r)).toList();
-    } catch (e) {
-      print("Inventory fetch error: $e");
-      return [];
-    }
+    // Map all records to Inventory objects with full Item details
+    final inventoryList = await Future.wait(
+      records.map((r) => Inventory.fromRecord(r)),
+    );
+
+    return inventoryList;
   }
 
   Future<bool> updateQuantity(String id, int quantity) async {
     try {
-      await pb.collection('inventory').update(id, body: {
-        "quantity": quantity,
-      });
+      await pb.collection('inventory').update(id, body: {"quantity": quantity});
       return true;
     } catch (e) {
       print("Update quantity error: $e");
@@ -35,11 +33,11 @@ class InventoryService {
     int quantity,
   ) async {
     try {
-      await pb.collection('inventory').create(body: {
-        "store": storeId,
-        "item": itemId,
-        "quantity": quantity,
-      });
+      await pb
+          .collection('inventory')
+          .create(
+            body: {"store": storeId, "item": itemId, "quantity": quantity},
+          );
       return true;
     } catch (e) {
       print("Inventory create error: $e");

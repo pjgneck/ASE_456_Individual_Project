@@ -1,6 +1,6 @@
-^C:\ASE\ASE 456\PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\3ED99939698B07C48586FBA91FE60172\FLUTTER_WINDOWS.DLL.RULE
+^C:\ASE\ASE 456\PROJECT\ASE_456_INDIVIDUAL_PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\C679E0A82D44CF9B3F7EC1F3EC34EC39\FLUTTER_WINDOWS.DLL.RULE
 setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\pjgne\flutter "PROJECT_DIR=C:\ASE\ASE 456\project\mcd_inventory" FLUTTER_ROOT=C:\Users\pjgne\flutter "FLUTTER_EPHEMERAL_DIR=C:\ASE\ASE 456\project\mcd_inventory\windows\flutter\ephemeral" "PROJECT_DIR=C:\ASE\ASE 456\project\mcd_inventory" "FLUTTER_TARGET=C:\ASE\ASE 456\project\mcd_inventory\lib\main.dart" DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false "PACKAGE_CONFIG=C:\ASE\ASE 456\project\mcd_inventory\.dart_tool\package_config.json" C:/Users/pjgne/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\pjgne\flutter "PROJECT_DIR=C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory" FLUTTER_ROOT=C:\Users\pjgne\flutter "FLUTTER_EPHEMERAL_DIR=C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\windows\flutter\ephemeral" "PROJECT_DIR=C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory" "FLUTTER_TARGET=C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\lib\main.dart" DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false "PACKAGE_CONFIG=C:\ASE\ASE 456\project\ASE_456_Individual_Project\mcd_inventory\.dart_tool\package_config.json" C:/Users/pjgne/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -8,7 +8,7 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\ASE\ASE 456\PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\BA10647C99BEE9AABE20D8EBA6FA90E8\FLUTTER_ASSEMBLE.RULE
+^C:\ASE\ASE 456\PROJECT\ASE_456_INDIVIDUAL_PROJECT\MCD_INVENTORY\BUILD\WINDOWS\X64\CMAKEFILES\5A40E794D97EE3804E9157FA416D80B9\FLUTTER_ASSEMBLE.RULE
 setlocal
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -16,9 +16,9 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
-^C:\ASE\ASE 456\PROJECT\MCD_INVENTORY\WINDOWS\FLUTTER\CMAKELISTS.TXT
+^C:\ASE\ASE 456\PROJECT\ASE_456_INDIVIDUAL_PROJECT\MCD_INVENTORY\WINDOWS\FLUTTER\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/ASE/ASE 456/project/mcd_inventory/windows" "-BC:/ASE/ASE 456/project/mcd_inventory/build/windows/x64" --check-stamp-file "C:/ASE/ASE 456/project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/generate.stamp"
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/ASE/ASE 456/project/ASE_456_Individual_Project/mcd_inventory/windows" "-BC:/ASE/ASE 456/project/ASE_456_Individual_Project/mcd_inventory/build/windows/x64" --check-stamp-file "C:/ASE/ASE 456/project/ASE_456_Individual_Project/mcd_inventory/build/windows/x64/flutter/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

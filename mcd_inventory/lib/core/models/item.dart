@@ -1,22 +1,25 @@
 class Item {
   final String id;
   final String name;
-  final String sku;
-  final Map<String, dynamic> raw;
+  final String perishable;
+  final String unit;
+  final String category; 
 
   Item({
     required this.id,
     required this.name,
-    required this.sku,
-    required this.raw,
+    required this.perishable,
+    required this.unit,
+    required this.category
   });
 
   factory Item.fromRecord(dynamic record) {
     return Item(
       id: record.id,
       name: record.data['name'] ?? '',
-      sku: record.data['sku'] ?? '',
-      raw: record.data,
+      perishable: record.data['perishable'] ?? '',
+      unit: record.data['unit'] ?? '',
+      category: record.data['category'] ?? '',
     );
   }
 }

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'McDonalds Inventory',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.yellow,
       ),
       home: const LoginScreen(),
     );
